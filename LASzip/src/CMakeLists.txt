@@ -25,8 +25,11 @@ set(LASZIP_SOURCES
     laswritepoint.cpp
     laszip.cpp
     laszip_dll.cpp
-    mydefs.cpp
 )
+
+if(MSVC)
+  list(APPEND LASZIP_SOURCES mydefs.cpp)
+endif()
 
 add_definitions(-DLASZIPDLL_EXPORTS)
 add_definitions(-DUNORDERED)

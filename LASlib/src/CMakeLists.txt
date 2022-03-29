@@ -54,8 +54,11 @@ set(LAZ_SRC
 	lasquadtree.cpp
 	lasinterval.cpp
 	laszip.cpp
-	mydefs.cpp
 )
+
+if(MSVC)
+  list(APPEND LAZ_SRC mydefs.cpp)
+endif()
 
 foreach(file ${LAZ_SRC})
 	list(APPEND LAZ_SRC_FULL ../../LASzip/src/${file})
