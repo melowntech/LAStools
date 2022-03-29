@@ -139,10 +139,10 @@ int main(int argc, char *argv[])
   }
   else
   {
-    //for (i = 1; i < argc; i++)
-    //{
-    //  if (argv[i][0] == '�') argv[i][0] = '-';
-    //}
+    for (i = 1; i < argc; i++)
+    {
+      if (argv[i][0] == '�') argv[i][0] = '-';
+    }
     if (!lasreadopener.parse(argc, argv)) byebye(true);
   }
 
