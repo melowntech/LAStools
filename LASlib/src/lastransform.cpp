@@ -802,7 +802,7 @@ class LASoperationCopyAttributeIntoRGBNIR : public LASoperation
 {
 public:
 	inline const CHAR* name() const { return "copy_attribute_into_"; };
-	inline I32 get_command(CHAR* string) const { return sprintf(string, "-%s%c %u ", name(), (rgbi == 0 ? 'R' : (rgbi == 1 ? 'G' : (rgbi == 2 ? 'B' : 'NIR'))), index); };
+	inline I32 get_command(CHAR* string) const { const U32 nir = ((('N' * 256) + 'I' ) * 256) + 'R'; return sprintf(string, "-%s%c %u ", name(), (rgbi == 0 ? 'R' : (rgbi == 1 ? 'G' : (rgbi == 2 ? 'B' : nir))), index); };
 	inline U32 get_decompress_selective() const { return LASZIP_DECOMPRESS_SELECTIVE_EXTRA_BYTES; };
 	inline void transform(LASpoint* point) {
 		F64 attribute = point->get_attribute_as_float(index);
@@ -1080,7 +1080,7 @@ class LASoperationCopyRegisterIntoRGBNIR : public LASoperation
 {
 public:
 	inline const CHAR* name() const { return "copy_register_into_"; };
-	inline I32 get_command(CHAR* string) const { return sprintf(string, "-%s%c %u ", name(), (rgbi == 0 ? 'R' : (rgbi == 1 ? 'G' : (rgbi == 2 ? 'B' : 'NIR'))), index); };
+	inline I32 get_command(CHAR* string) const { const U32 nir = ((('N' * 256) + 'I' ) * 256) + 'R'; return sprintf(string, "-%s%c %u ", name(), (rgbi == 0 ? 'R' : (rgbi == 1 ? 'G' : (rgbi == 2 ? 'B' : nir))), index); };
 	inline void transform(LASpoint* point) {
 		point->set_RGBI(rgbi, U16_CLAMP(registers[index]));
 	};
