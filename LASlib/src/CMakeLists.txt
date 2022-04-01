@@ -65,7 +65,7 @@ foreach(file ${LAZ_SRC})
 endforeach(file)
 
 file(GLOB_RECURSE LAS_INCLUDES
-	${CMAKE_SOURCE_DIR}/LASzip/src/*.hpp 
+	${CMAKE_SOURCE_DIR}/LASzip/src/*.hpp
 	${CMAKE_SOURCE_DIR}/LASlib/inc/*.hpp
 )
 
@@ -77,8 +77,8 @@ if (BUILD_SHARED_LIBS)
 endif()
 
 target_include_directories(LASlib PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/LASlib/inc>
-  $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/LASzip/src>
+  $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/LAStools/LASlib/inc>
+  $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/LAStools/LASzip/src>
   $<INSTALL_INTERFACE:include/LASlib>
 )
 set_target_properties(LASlib PROPERTIES
@@ -91,13 +91,13 @@ if(MSVC)
    target_compile_options(LASlib PRIVATE /Zi)
 
    # Tell linker to include symbol data
-    set_target_properties(LASlib PROPERTIES 
+    set_target_properties(LASlib PROPERTIES
         LINK_FLAGS "/INCREMENTAL:NO /DEBUG /OPT:REF /OPT:ICF"
     )
 
     # Set file name & location
-    set_target_properties(LASlib PROPERTIES 
-        COMPILE_PDB_NAME LASlib 
+    set_target_properties(LASlib PROPERTIES
+        COMPILE_PDB_NAME LASlib
         COMPILE_PDB_OUTPUT_DIR ${CMAKE_BINARY_DIR}
     )
 endif()
