@@ -8,6 +8,10 @@ else()
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
+if (APPLE)
+    add_compile_options(-Wno-deprecated-declarations)
+endif()
+
 option(BUILD_SHARED_LIBS "Build LASlib as DLL" OFF)
 
 if (BUILD_SHARED_LIBS AND UNIX AND NOT APPLE)
